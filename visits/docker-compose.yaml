@@ -1,0 +1,11 @@
+services:
+  redis:
+    image: redis
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 80:3000
+    depends_on:
+      - redis
