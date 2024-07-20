@@ -1,6 +1,13 @@
 services:
   redis:
     image: redis
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DATABASE=postgres
+      - POSTGRES_PORT=5432
   worker:
     build:
       context: ./worker
@@ -13,3 +20,20 @@ services:
       - REDIS_PORT=6379
     depends_on:
       - redis
+  api:
+    build:
+      context: ./server
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - ./server:/app
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DATABASE=postgres
+      - POSTGRES_PORT=5432
+    depends_on:
+      - redis
+      - postgres
