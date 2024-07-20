@@ -1,13 +1,37 @@
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: webserver
+#   labels:
+#     app: webapp
+# spec:
+#   containers:
+#     - image: nginx
+#       name: webserver
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: webserver-loadbalancer-service
+# spec:
+#   selector
+#     app: webapp
+#   type: LoadBalancer
+#   ports:
+#     - name: webserver
+#       protocol: TCP
+#       port: 8080
+#       targetPort: 80
 apiVersion: v1
 kind: Pod
 metadata:
-  name: webserver
+  name: webserver-pod
   labels:
     app: webapp
 spec:
   containers:
-    - image: nginx
-      name: webserver
+    - name: nginx
+      image: nginx
 ---
 apiVersion: v1
 kind: Service
@@ -18,7 +42,7 @@ spec:
     app: webapp
   type: LoadBalancer
   ports:
-    - name: webserver
+    - name: nginx
       protocol: TCP
       port: 8080
       targetPort: 80
