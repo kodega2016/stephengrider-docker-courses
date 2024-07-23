@@ -36,3 +36,11 @@ build:
         manual:
           - src: "*.js"
             dest: .
+deploy:
+  kubectl:
+    manifests:
+      - k8s/client-deployment.yaml
+      - k8s/server-deployment.yaml
+      - k8s/worker-deployment.yaml
+      - k8s/server-clusterip-service.yaml
+      - k8s/client-clusterip-service.yaml
