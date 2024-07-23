@@ -5,6 +5,7 @@ metadata:
   labels:
     app: client
 spec:
+  replicas: 2
   selector:
     matchLabels:
       app: client
@@ -15,7 +16,6 @@ spec:
     spec:
       containers:
         - name: client
-          image: stephengrider/multi-client
-          imagePullPolicy: Always
+          image: kodega2016/multi-client
           ports:
             - containerPort: 3000
