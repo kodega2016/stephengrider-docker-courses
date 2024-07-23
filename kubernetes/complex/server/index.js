@@ -109,7 +109,7 @@ app.post("/values", async (req, res) => {
 const errorHandler = require("./middlewares/error_handler");
 app.use(errorHandler);
 
-const PORT = 8080;
+const PORT = 5000;
 const server = app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
